@@ -18,10 +18,10 @@ public class UserDao {
     public boolean add(User u){
         DBUtil db = new DBUtil();
         String sql = "insert into user values(?,?,?,?)";
-        String[] params = {String.valueOf(u.getId()),
+        Object[] params = {u.getId(),
                            u.getUsername(),
                            u.getPassword(),
-                           String.valueOf(u.getLevel())
+                           u.getLevel()
                            };
             int rownum = db.doUpdate(sql,params);//rownum表示影响行数
             return rownum == 1;
@@ -34,7 +34,7 @@ public class UserDao {
     public boolean delete(int id){
         DBUtil db = new DBUtil();
         String sql = "delete from user where id = ?";
-        String[] params = {String.valueOf(id)};
+        Object[] params = {id};
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
         return rownum == 1;
     }
@@ -47,11 +47,11 @@ public class UserDao {
     public boolean update(User u){
         DBUtil db = new DBUtil();
         String sql = "update user set username=?,password=?,level=? where id =?";
-        String[] params = {
+        Object[] params = {
                 u.getUsername(),
                 u.getPassword(),
-                String.valueOf(u.getLevel()),
-                String.valueOf(u.getId())
+                u.getLevel(),
+                u.getId()
         };
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
         return rownum == 1;
@@ -65,7 +65,7 @@ public class UserDao {
     public User get(int id){
         DBUtil db = new DBUtil();
         String sql = "select username,password,level from user where id = ?";
-        String[] params = {String.valueOf(id)};
+        Object[] params = {id};
         try {
             ResultSet rs = db.doQuery(sql, params);
             if (rs != null) {
@@ -92,10 +92,10 @@ public class UserDao {
     public User get(int id,String password){
         DBUtil db = new DBUtil();
         String sql = "select username,password,level where id = ?";
-        String[] params = {String.valueOf(id)};
+        Object[] params = {id};
         try {
             ResultSet rs = db.doQuery(sql, params);
-            if (rs != null) {
+            if (rs.next()) {
                 String pass = rs.getString(2);
                 if(pass.equals(password)){
                     //表示从数据库取出的密码和给定的密码符合
