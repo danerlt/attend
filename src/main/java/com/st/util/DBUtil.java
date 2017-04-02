@@ -1,19 +1,11 @@
 package com.st.util;
 
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;//配置文件
-/**
- * Created by tao on 2017/4/2 0002.
- */
+
 public class DBUtil {
 
     private static String driver;
@@ -26,10 +18,10 @@ public class DBUtil {
     public Statement stmt = null;
     // 通过配置文件设置driver,username,username,password
     static {
-//		Properties prop = Class.getResourceAsStream(String path)
-//        InputStream in;
+//		Properties prop = new Properties();
+//		Reader in;
 //		try {
-//			in = new FileInputStream("./src/main/resources/config.properties");
+//			in = new FileReader("./src/config.properties");
 //			prop.load(in);
 //		} catch (Exception e) {
 //			e.printStackTrace();
@@ -38,10 +30,11 @@ public class DBUtil {
 //		url = prop.getProperty("url");
 //		username = prop.getProperty("username");
 //		password = prop.getProperty("password");
-        driver="com.mysql.jdbc.Driver";
-        url="jdbc:mysql://localhost:3306/attend";
-        username="root";
-        password="myroot!!!";
+        driver = "com.mysql.jdbc.Driver";
+        url = "jdbc:mysql://localhost:3306/shopsystem?useUnicode=true&characterEncoding=utf-8&useSSL=true";
+        username = "root";
+        password = "myroot!!!";
+
     }
 
     public DBUtil() {
@@ -72,7 +65,7 @@ public class DBUtil {
      *            预处理中的SQL语句中的参数
      * @return 查询后的结果集
      */
-    public ResultSet doQuery(String sql, String[] params) {
+    public ResultSet doQuery(String sql, Object[] params) {
         try {
             conn = DBUtil.getConnection();
             // 获取PreparedStatement对象
@@ -80,7 +73,7 @@ public class DBUtil {
             // 设置pstmt的参数
             if (params != null) {
                 for (int i = 0; i < params.length; i++) {
-                    pstmt.setString(i + 1, params[i]);
+                    pstmt.setObject(i + 1, params[i]);
                 }
             }
             // 执行查询
@@ -120,7 +113,7 @@ public class DBUtil {
      *            预处理中的SQL语句中的参数
      * @return 受影响的行数
      */
-    public int doUpdate(String sql, String[] params) {
+    public int doUpdate(String sql, Object[] params) {
         int n = 0;
 
         // 取消Connection的自动提交
@@ -133,7 +126,7 @@ public class DBUtil {
             // 设置pstmt的参数
             if (params != null) {
                 for (int i = 0; i < params.length; i++) {
-                    pstmt.setString(i + 1, params[i]);
+                    pstmt.setObject(i + 1, params[i]);
                 }
             }
             // 执行更新
