@@ -91,10 +91,11 @@ public class UserDao {
      */
     public User get(int id,String password){
         DBUtil db = new DBUtil();
-        String sql = "select username,password,level where id = ?";
-        Object[] params = {id};
+        String sql = "select username,`password`,`level` from `user` where id = "+id;
+       // Object[] params = {id};
         try {
-            ResultSet rs = db.doQuery(sql, params);
+            //ResultSet rs = db.doQuery(sql, params);
+            ResultSet rs = db.doQuery(sql);
             if (rs.next()) {
                 String pass = rs.getString(2);
                 if(pass.equals(password)){

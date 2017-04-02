@@ -17,5 +17,6 @@
 </head>
 <body>
    <p>welcome to attend system</p>
+    <p>欢迎登录考勤系统</p>
 </body>
 </html>

@@ -15,7 +15,7 @@ public class DBUtilTest {
            DBUtil db = new DBUtil();
            ResultSet rs = null;
            String sql = "select username from user where id =?";
-           String[] params = {"1001"};
+           Object[] params = {1001};
            rs = db.doQuery(sql,params);
            if(rs.next()){
               System.out.println(rs.getString(1));

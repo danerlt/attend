@@ -16,27 +16,7 @@
     <script src="js/vue.js"></script>
 </head>
 <body>
-<div id="app" >
-    <form class="login-container" action="login" method="post">
-        <h3 class="title">系统登录</h3>
-        <div class="item">
-            <label for="name">
-                <input name="name" type="text" placeholder="用户名">
-            </label>
-        </div>
-        <div class="item">
-            <label for="password">
-                <input name="password" type="password" placeholder="密码">
-            </label>
-        </div>
-        <div class="item">
-            <label for="">
-                <input class="bg-primary" type="submit" value="登录">
-            </label>
-        </div>
-
-    </form>
-</div>
-
+   <p>welcome to attend system</p>
+    <p>欢迎登录考勤系统</p>
 </body>
 </html>

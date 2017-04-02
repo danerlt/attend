@@ -1,2 +1,6 @@
 com\st\dao\UserDao.class
+com\st\util\DBUtil.class
+com\st\entity\User.class
+com\st\filter\CharSetFilter.class
 com\st\servlet\LoginServlet.class
+com\st\entity\Log.class

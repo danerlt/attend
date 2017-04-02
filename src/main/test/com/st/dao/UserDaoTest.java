@@ -14,6 +14,12 @@ public class UserDaoTest {
 //        ud.add(u);
 //        System.out.println( ud.get(u.getId()));
 
+    }
+    @Test
+    public void testGetbyIdandPassword(){
+        UserDao ud = new UserDao();
+        User u = ud.get(1001,"123456");
+        System.out.println(u);
 
     }
 }
