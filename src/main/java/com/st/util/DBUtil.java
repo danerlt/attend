@@ -31,7 +31,7 @@ public class DBUtil {
 //		username = prop.getProperty("username");
 //		password = prop.getProperty("password");
         driver = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/shopsystem?useUnicode=true&characterEncoding=utf-8&useSSL=true";
+        url = "jdbc:mysql://localhost:3306/attend?useUnicode=true&characterEncoding=utf-8&useSSL=true";
         username = "root";
         password = "myroot!!!";
 
