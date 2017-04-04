@@ -1,6 +1,6 @@
 package com.st.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by tao on 2017/4/2 0002.
