@@ -2,7 +2,7 @@ package com.st.dao;
 
 import com.st.entity.Log;
 import com.st.util.DBUtil;
-
+import java.util.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class LogDao {
      */
     public boolean delete(int id){
         DBUtil db = new DBUtil();
-        String sql = "delete from user where id = ?";
+        String sql = "delete from Log where id = ?";
         Object[] params = {id};
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
         return rownum == 1;
@@ -45,17 +45,20 @@ public class LogDao {
 
     /**
      *
-     * @param u 日志
+     * @param log 日志
      * @return 更新成功:true,更新失败:false
      */
-    public boolean update(User u){
+    public boolean update(Log log){
         DBUtil db = new DBUtil();
-        String sql = "update user set username=?,password=?,level=? where id =?";
+        String sql = "update Log set uid=?,workdate=?,describe=?,worktime=?,difficulty=?,remark=? where id =?";
         Object[] params = {
-                u.getUsername(),
-                u.getPassword(),
-                u.getLevel(),
-                u.getId()
+                log.getUid(),
+                log.getWorkdate(),
+                log.getDesribe(),
+                log.getWorktime(),
+                log.getDifficulty(),
+                log.getRemark(),
+                log.getId()
         };
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
         return rownum == 1;
@@ -66,18 +69,21 @@ public class LogDao {
      * @param id 日志ID
      * @return 查找成功:ID为id的日志,查找失败:null
      */
-    public User get(int id){
+    public Log get(int id){
         DBUtil db = new DBUtil();
-        String sql = "select username,password,level from user where id = ?";
+        String sql = "select uid,workdate,descirbe,worktime,diffculty,remark from log where id = ?";
         Object[] params = {id};
         try {
             ResultSet rs = db.doQuery(sql, params);
-            if (rs != null) {
-                String username = rs.getString(1);
-                String password = rs.getString(2);
-                int level = rs.getInt(3);
-                User u = new User(id, username, password, level);
-                return u;
+            if (rs.next()) {
+               int uid = rs.getInt(1);
+               Date workdate = rs.getDate(2);
+               String describe = rs.getString(3);
+               int worktime = rs.getInt(4);
+               String diffculty = rs.getString(5);
+               String remark = rs.getString(6);
+               Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+               return log;
             }else{
                 return null;
             }
@@ -89,53 +95,25 @@ public class LogDao {
 
     /**
      *
-     * @param id 日志ID
-     * @param password 日志密码
-     * @return 查找成功:ID为id的日志,查找失败:null
+     * @param uid 用户ID
+     * @return 查找成功:用户ID为uid的所有日志,查找失败:null
      */
-    public User get(int id,String password){
+    public List<Log> getByUid(int uid){
+        List<Log> list = new ArrayList<Log>();
         DBUtil db = new DBUtil();
-        String sql = "select username,`password`,`level` from `user` where id = "+id;
-        // Object[] params = {id};
-        try {
-            //ResultSet rs = db.doQuery(sql, params);
-            ResultSet rs = db.doQuery(sql);
-            if (rs.next()) {
-                String pass = rs.getString(2);
-                if(pass.equals(password)){
-                    //表示从数据库取出的密码和给定的密码符合
-                    String username = rs.getString(1);
-                    int level = rs.getInt(3);
-                    User u = new User(id,username,password,level);
-                    return u;
-                }else{
-                    return null;
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     *
-     * @param username
-     * @return 查找成功:所用名为username的日志,查找失败:null
-     */
-    public List<User> get(String username){
-        DBUtil db = new DBUtil();
-        String sql = "select id,pssword,level where username = ?";
-        String[] params = {username};
-        List<User> list = new ArrayList<User>();
+        String sql = "select id,workdate,descirbe,worktime,diffculty,remark from log where uid = ?";
+        Object[] params = {uid};
         try {
             ResultSet rs = db.doQuery(sql, params);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String password = rs.getString(2);
-                int level = rs.getInt(3);
-                User u = new User(id,username,password,level);
-                list.add(u);
+                Date workdate = rs.getDate(2);
+                String describe = rs.getString(3);
+                int worktime = rs.getInt(4);
+                String diffculty = rs.getString(5);
+                String remark = rs.getString(6);
+                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+                list.add(log);
             }
             return list;
         }catch (Exception e){
@@ -144,23 +122,27 @@ public class LogDao {
         return null;
     }
 
+
     /**
      *
-     * @return 所用日志
+     * @return 所有日志
      */
-    public List<User> findAll(){
+    public List<Log> findAll(){
         DBUtil db = new DBUtil();
-        String sql = "select * where username";
-        List<User> list = new ArrayList<User>();
+        String sql = "select * where Logname";
+        List<Log> list = new ArrayList<Log>();
         try {
             ResultSet rs = db.doQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String username = rs.getString(2);
-                String password = rs.getString(3);
-                int level = rs.getInt(4);
-                User u = new User(id,username,password,level);
-                list.add(u);
+                int uid = rs.getInt(2);
+                Date workdate = rs.getDate(3);
+                String describe = rs.getString(4);
+                int worktime = rs.getInt(5);
+                String diffculty = rs.getString(6);
+                String remark = rs.getString(7);
+                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+                list.add(log);
             }
             return list;
         }catch (Exception e){
