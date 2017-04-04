@@ -98,4 +98,17 @@ public class Log {
         result = 31 * result + (getRemark() != null ? getRemark().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", workdate=" + workdate +
+                ", desribe='" + desribe + '\'' +
+                ", worktime=" + worktime +
+                ", difficulty='" + difficulty + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }
