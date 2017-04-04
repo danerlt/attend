@@ -10,8 +10,11 @@ body{
 ul > li {
     list-style: none;
 }
-/********************* *全局样式结束**********************/
-/************************主页样式开始*********************/
+a{
+    text-decoration: none;
+}
+/***********************全局样式结束**********************/
+/************************login.jsp样式开始*********************/
 #app {
     position: absolute;
     top: 0;
@@ -74,4 +77,117 @@ input[type=checkbox]:hover{
 .item > label{
     display: block;
 }
-/************************主页样式结束*********************/
+/************************login.jsp样式结束*********************/
+/***********index.jsp样式开始************************/
+
+.title{
+    height:50px;
+    background-color: #0080ff;
+    border-right:solid 1px #fff;
+    color:#fff;
+    line-height:50px;
+    font-size:22px;
+    text-indent:18px;
+}
+#nav{
+    width:16%;
+    background-color: #e0e0e0;
+    height:100%;
+    float:left;
+}
+#nav .menu2{
+    height:50px;
+    line-height: 50px;
+    text-indent: 18px;
+    font-size: 18px;
+    background-color: #d0d0d0;
+    border:1px solid #EEE8DD;
+    cursor:hand;
+    overflow-y:hidden;
+}
+
+#nav .menu1{
+    line-height:50px;
+    font-size:18px;
+    text-indent:18px;
+    height:auto;
+    border:1px solid #EEE8DD;
+    background-color: #d0d0d0;
+    cursor:hand;
+    overflow-y:hidden;
+    filter:Alpha(opacity=70);
+}
+.select{
+    height:100px;
+    text-align:left;
+    font-weight:normal;
+    background-color: #e0e0e0;
+}
+.select a{
+    display:block;
+    height:50px;
+    line-height:50px;
+    font-size:18px;
+    text-indent:18px;
+    text-align:left;
+    font-weight:normal;
+    color:#272727;
+}
+a:hover{
+    color:#fff;
+    background-color:gray;
+}
+
+/*工作内容操作*/
+#content{
+    width:84%;
+    height:100%;
+    float:left;
+}
+#content .display{
+    margin-left:20px;
+    height:40px;
+    line-height: 40px;
+}
+#content .serch{
+    height:50px;
+    margin-left:20px;
+    background-color: #e0e0e0;
+}
+#content .serch  .text{
+    margin:7px 0 7px 20px;
+    line-height: 36px;
+    height:36px;
+    width:260px;
+    font-size:14px;
+}
+#content .serch  .submit{
+    line-height: 34px;
+    height:34px;
+    width:42px;
+    border:0px inset;
+    color:#fff;
+    background-color: #0080ff;
+    font-size:16px;
+    border-radius: 4px;
+}
+#content .table{
+    display:block;
+    margin-top:15px;
+    margin-left:20px;
+}
+#content .table table tr{
+    display:block;
+    height:30px;
+    line-height: 30px;
+    border:solid 1px #e0e0e0;
+}
+#content .table table tr td{
+    width:100px;
+}
+#content .table .th{
+    background-color: #e0e0e0;
+}
+#content .table table tr .text{
+    width:260px;
+}
