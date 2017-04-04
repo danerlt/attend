@@ -1,6 +1,7 @@
 package com.st.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by tao on 2017/4/2 0002.
@@ -8,13 +9,13 @@ import java.sql.Date;
 public class Log {
     private int id ;
     private int uid;
-    private Date workdate;
+    private Timestamp workdate;
     private String desribe;
     private int worktime;
     private String difficulty;
     private String remark;
 
-    public Log(int id,int uid,Date workdate,String desribe,int worktime,String difficulty,String remark){
+    public Log(int id,int uid,Timestamp workdate,String desribe,int worktime,String difficulty,String remark){
         this.id = id;
         this.uid = uid;
         this.workdate = workdate;
@@ -40,11 +41,11 @@ public class Log {
         this.uid = uid;
     }
 
-    public Date getWorkdate() {
+    public Timestamp getWorkdate() {
         return workdate;
     }
 
-    public void setWorkdate(Date workdate) {
+    public void setWorkdate(Timestamp workdate) {
         this.workdate = workdate;
     }
 

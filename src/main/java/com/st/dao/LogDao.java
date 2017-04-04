@@ -2,6 +2,9 @@ package com.st.dao;
 
 import com.st.entity.Log;
 import com.st.util.DBUtil;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -71,13 +74,13 @@ public class LogDao {
      */
     public Log get(int id){
         DBUtil db = new DBUtil();
-        String sql = "select uid,workdate,descirbe,worktime,diffculty,remark from log where id = ?";
+        String sql = "select uid,workdate,`describe`,worktime,difficulty,remark from log where id = ?";
         Object[] params = {id};
         try {
             ResultSet rs = db.doQuery(sql, params);
             if (rs.next()) {
                int uid = rs.getInt(1);
-               Date workdate = rs.getDate(2);
+               Timestamp workdate = rs.getTimestamp(2);
                String describe = rs.getString(3);
                int worktime = rs.getInt(4);
                String diffculty = rs.getString(5);
@@ -107,7 +110,7 @@ public class LogDao {
             ResultSet rs = db.doQuery(sql, params);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                Date workdate = rs.getDate(2);
+                Timestamp workdate = rs.getTimestamp(2);
                 String describe = rs.getString(3);
                 int worktime = rs.getInt(4);
                 String diffculty = rs.getString(5);
@@ -136,7 +139,7 @@ public class LogDao {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 int uid = rs.getInt(2);
-                Date workdate = rs.getDate(3);
+                Timestamp workdate = rs.getTimestamp(3);
                 String describe = rs.getString(4);
                 int worktime = rs.getInt(5);
                 String diffculty = rs.getString(6);
@@ -150,5 +153,4 @@ public class LogDao {
         }
         return null;
     }
-
 }
