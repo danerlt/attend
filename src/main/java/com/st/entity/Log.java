@@ -14,6 +14,16 @@ public class Log {
     private String difficulty;
     private String remark;
 
+    public Log(int id,int uid,Date workdate,String desribe,int worktime,String difficulty,String remark){
+        this.id = id;
+        this.uid = uid;
+        this.workdate = workdate;
+        this.desribe = desribe;
+        this.worktime = worktime;
+        this.difficulty = difficulty;
+        this.remark = remark;
+    }
+
     public int getId() {
         return id;
     }
