@@ -142,7 +142,7 @@ public class UserDao {
 
     /**
      *
-     * @return 所用用户
+     * @return 所有用户
      */
     public List<User> findAll(){
         DBUtil db = new DBUtil();
