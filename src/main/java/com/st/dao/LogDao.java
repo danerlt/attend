@@ -104,7 +104,7 @@ public class LogDao {
     public List<Log> getByUid(int uid){
         List<Log> list = new ArrayList<Log>();
         DBUtil db = new DBUtil();
-        String sql = "select id,workdate,descirbe,worktime,diffculty,remark from log where uid = ?";
+        String sql = "select id,workdate,`describe`,worktime,difficulty,remark from log where uid = ?";
         Object[] params = {uid};
         try {
             ResultSet rs = db.doQuery(sql, params);
