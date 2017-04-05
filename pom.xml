@@ -38,6 +38,13 @@
       <scope>test</scope>
     </dependency>
     <!--引入Junit开始-->
+    <!--引入JfastJSON开始-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.31</version>
+    </dependency>
+    <!--引入fastJSON结束-->
     <!--引入mysql-connetctor开始-->
     <dependency>
       <groupId>mysql</groupId>
