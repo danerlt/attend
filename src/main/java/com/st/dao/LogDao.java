@@ -3,9 +3,7 @@ package com.st.dao;
 import com.st.entity.Log;
 import com.st.util.DBUtil;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +19,15 @@ public class LogDao {
      */
     public boolean add(Log log){
         DBUtil db = new DBUtil();
-        String sql = "insert into log values(?,?,?,?,?,?,?)";
+        String sql = "insert into log values(?,?,?,?,?,?,?,?)";
         Object[] params = {log.getId(),
                 log.getUid(),
                 log.getWorkdate(),
                 log.getDesribe(),
                 log.getWorktime(),
                 log.getDifficulty(),
-                log.getRemark()
+                log.getRemark(),
+                log.getStatus()
         };
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
         return rownum == 1;
@@ -53,7 +52,7 @@ public class LogDao {
      */
     public boolean update(Log log){
         DBUtil db = new DBUtil();
-        String sql = "update Log set uid=?,workdate=?,describe=?,worktime=?,difficulty=?,remark=? where id =?";
+        String sql = "update Log set uid=?,workdate=?,describe=?,worktime=?,difficulty=?,remark=?,status=? where id =?";
         Object[] params = {
                 log.getUid(),
                 log.getWorkdate(),
@@ -61,6 +60,7 @@ public class LogDao {
                 log.getWorktime(),
                 log.getDifficulty(),
                 log.getRemark(),
+                log.getStatus(),
                 log.getId()
         };
         int rownum = db.doUpdate(sql,params);//rownum表示影响行数
@@ -74,18 +74,19 @@ public class LogDao {
      */
     public Log get(int id){
         DBUtil db = new DBUtil();
-        String sql = "select uid,workdate,`describe`,worktime,difficulty,remark from log where id = ?";
+        String sql = "select uid,workdate,`describe`,worktime,difficulty,remark,status from log where id = ?";
         Object[] params = {id};
         try {
             ResultSet rs = db.doQuery(sql, params);
             if (rs.next()) {
                int uid = rs.getInt(1);
-               Timestamp workdate = rs.getTimestamp(2);
+               Date workdate = rs.getDate(2);
                String describe = rs.getString(3);
                int worktime = rs.getInt(4);
                String diffculty = rs.getString(5);
                String remark = rs.getString(6);
-               Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+               String status = rs.getString(7);
+               Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark,status);
                return log;
             }else{
                 return null;
@@ -104,18 +105,19 @@ public class LogDao {
     public List<Log> getByUid(int uid){
         List<Log> list = new ArrayList<Log>();
         DBUtil db = new DBUtil();
-        String sql = "select id,workdate,`describe`,worktime,difficulty,remark from log where uid = ?";
+        String sql = "select id,workdate,`describe`,worktime,difficulty,remark,status from log where uid = ? order by workdate desc";
         Object[] params = {uid};
         try {
             ResultSet rs = db.doQuery(sql, params);
             while (rs.next()) {
                 int id = rs.getInt(1);
-                Timestamp workdate = rs.getTimestamp(2);
+                Date workdate = rs.getDate(2);
                 String describe = rs.getString(3);
                 int worktime = rs.getInt(4);
                 String diffculty = rs.getString(5);
                 String remark = rs.getString(6);
-                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+                String status = rs.getString(7);
+                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark,status);
                 list.add(log);
             }
             return list;
@@ -139,12 +141,13 @@ public class LogDao {
             while (rs.next()) {
                 int id = rs.getInt(1);
                 int uid = rs.getInt(2);
-                Timestamp workdate = rs.getTimestamp(3);
+                Date workdate = rs.getDate(3);
                 String describe = rs.getString(4);
                 int worktime = rs.getInt(5);
                 String diffculty = rs.getString(6);
                 String remark = rs.getString(7);
-                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark);
+                String status = rs.getString(8);
+                Log log = new Log(id,uid,workdate,describe,worktime,diffculty,remark,status);
                 list.add(log);
             }
             return list;

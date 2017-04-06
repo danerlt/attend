@@ -1,21 +1,25 @@
 package com.st.entity;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import com.alibaba.fastjson.annotation.JSONType;
+
+import java.sql.Date;
 
 /**
  * Created by tao on 2017/4/2 0002.
  */
+
+@JSONType(orders={"id","uid","workdate","desribe","worktime","difficulty","remark"})
 public class Log {
     private int id ;
     private int uid;
-    private Timestamp workdate;
+    private Date workdate;
     private String desribe;
     private int worktime;
     private String difficulty;
     private String remark;
+    private String status;
 
-    public Log(int id,int uid,Timestamp workdate,String desribe,int worktime,String difficulty,String remark){
+    public Log(int id,int uid,Date workdate,String desribe,int worktime,String difficulty,String remark,String status){
         this.id = id;
         this.uid = uid;
         this.workdate = workdate;
@@ -23,6 +27,7 @@ public class Log {
         this.worktime = worktime;
         this.difficulty = difficulty;
         this.remark = remark;
+        this.status = status;
     }
 
     public int getId() {
@@ -41,11 +46,11 @@ public class Log {
         this.uid = uid;
     }
 
-    public Timestamp getWorkdate() {
+    public Date getWorkdate() {
         return workdate;
     }
 
-    public void setWorkdate(Timestamp workdate) {
+    public void setWorkdate(Date workdate) {
         this.workdate = workdate;
     }
 
@@ -81,6 +86,14 @@ public class Log {
         this.remark = remark;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,7 +108,8 @@ public class Log {
         if (getDesribe() != null ? !getDesribe().equals(log.getDesribe()) : log.getDesribe() != null) return false;
         if (getDifficulty() != null ? !getDifficulty().equals(log.getDifficulty()) : log.getDifficulty() != null)
             return false;
-        return getRemark() != null ? getRemark().equals(log.getRemark()) : log.getRemark() == null;
+        if (getRemark() != null ? !getRemark().equals(log.getRemark()) : log.getRemark() != null) return false;
+        return getStatus() != null ? getStatus().equals(log.getStatus()) : log.getStatus() == null;
     }
 
     @Override
@@ -107,6 +121,7 @@ public class Log {
         result = 31 * result + getWorktime();
         result = 31 * result + (getDifficulty() != null ? getDifficulty().hashCode() : 0);
         result = 31 * result + (getRemark() != null ? getRemark().hashCode() : 0);
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         return result;
     }
 
@@ -120,6 +135,7 @@ public class Log {
                 ", worktime=" + worktime +
                 ", difficulty='" + difficulty + '\'' +
                 ", remark='" + remark + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

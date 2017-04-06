@@ -32,6 +32,7 @@ CREATE TABLE `log` (
   `worktime` tinyint(4) DEFAULT NULL COMMENT '工作时长,单位小时',
   `difficulty` varchar(10) DEFAULT NULL COMMENT '工作难度,有初,中,高',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `status` varchar(10) DEFAULT NULL COMMENT '日志状态,通过或者驳回',
   PRIMARY KEY (`id`),
   KEY `fk_user` (`uid`),
   CONSTRAINT `fk_user` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
@@ -40,7 +41,9 @@ CREATE TABLE `log` (
 -- ----------------------------
 -- Records of log
 -- ----------------------------
-INSERT INTO `log` VALUES ('100001', '1001', '2017-04-01 00:00:00', '测试数据', '8', '中', null);
+INSERT INTO `log` VALUES ('100001', '1001', '2017-04-01', '测试数据', '8', '中', null,'通过');
+INSERT INTO `log` VALUES ('100002', '1001', '2017-04-02', '测试数据', '8', '中', null,'通过');
+INSERT INTO `log` VALUES ('100003', '1001', '2017-04-02', '测试数据', '8', '中', null,'驳回');
 
 -- ----------------------------
 -- Table structure for user
