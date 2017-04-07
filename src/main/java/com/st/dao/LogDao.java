@@ -34,6 +34,26 @@ public class LogDao {
     }
     /**
      * 添加一个日志,
+     * @param log 日志
+     * @return 添加成功:true 添加失败:false
+     */
+    public boolean addWithoutId(Log log){
+        DBUtil db = new DBUtil();
+        String sql = "insert into log(uid,workdate,`describe`,worktime,difficulty,remark,`status`) values(?,?,?,?,?,?,?)";
+        Object[] params = {
+                log.getUid(),
+                log.getWorkdate(),
+                log.getDesribe(),
+                log.getWorktime(),
+                log.getDifficulty(),
+                log.getRemark(),
+                log.getStatus()
+        };
+        int rownum = db.doUpdate(sql,params);//rownum表示影响行数
+        return rownum == 1;
+    }
+    /**
+     * 添加一个日志,
      * @param id 日志ID
      * @return 删除成功:true 删除失败:false
      */
