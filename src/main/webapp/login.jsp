@@ -20,17 +20,17 @@
     <form class="login-container" action="login" method="post">
         <h3 class="title">系统登录</h3>
         <div class="item">
-            <label for="id">
+            <label >
                 <input name="id" type="text" placeholder="用户工号">
             </label>
         </div>
         <div class="item">
-            <label for="password">
+            <label >
                 <input name="password" type="password" placeholder="密码">
             </label>
         </div>
         <div class="item">
-            <label for="">
+            <label >
                 <input class="bg-primary" type="submit" value="登录">
             </label>
         </div>

@@ -18,7 +18,7 @@ function getCookie(Name) {
     return returnvalue;
 }
 
-function findLog(uid) {
+function findLog() {
         $.ajax({
                 type:"POST",
                 url:"/attend/findlog",
@@ -27,9 +27,8 @@ function findLog(uid) {
                     uid:getCookie("Id")
                 },
                 success:function (data) {
-                    var uname = '<%=session.getAttribute("uname")%>';
-                    alert(uname);
-                    conlose.log(uname);
+                    //清楚之前的数据
+                    $('#table').bootstrapTable('destroy');
                     $('#table').bootstrapTable({
                         data: data
                     })
@@ -38,6 +37,51 @@ function findLog(uid) {
         );
     }
 
+    /**提交日志**/
+    function addLog(){
+        var addFrom = document.addfrom;
+        var uid = addFrom.uid.value;
+        var workdate = addFrom.workdate.value;
+        var describe = addFrom.describe.value;
+        var worktime= addFrom.worktime.value;
+        var difficulty = addFrom.difficulty.value;
+        var remark = addFrom.remark.value;
+        var dd = {
+                uid:uid,
+                workdate:workdate,
+                describe:describe,
+                worktime:worktime,
+                difficulty:difficulty,
+                remark:remark
+        }
+        console.log(dd)
+        $.ajax({
+                type:"POST",
+                url:"/attend/addlog",
+                dataType:"json",
+                data:{
+                    uid:uid,
+                    workdate:workdate,
+                    describe:describe,
+                    worktime:worktime,
+                    difficulty:difficulty,
+                    remark:remark
+                },
+                success:function (msg) {
+                   if(msg == true){
+                       alert("提交成功");
+                   }else{
+                       alert("提交失败");
+                   }
+                   findLog();
+                }
+
+            }
+        )
+    }
+    function exportXls() {
+        
+    }
 $(document).ready(function(){
     $('#datetimepicker').datetimepicker({
         format: 'yyyy-MM-dd',
@@ -49,6 +93,5 @@ $(document).ready(function(){
         secondStep: 30,
         inputMask: true
     });
-
 })
 

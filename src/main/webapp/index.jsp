@@ -40,7 +40,8 @@
         <input type="text" name="" class="text" placeholder="按时间查找"/>
         <button class="submit" onclick="findLog()">查看</button>
         <!-- 按钮触发模态框 -->
-        <button class="submit" data-toggle="modal" data-target="#myModal">新增</button>
+        <button class="submit" data-toggle="modal" data-target="#myModal" onclick="">新增</button>
+        <button class="submit" onclick="exportXls()">导出</button>
     </div>
     <div class="table-responsive">
         <table id="table" class="table table-striped table-hover">
@@ -60,20 +61,21 @@
 
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <%--<div class="modal-dialog">--%>
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h2 class="modal-title" id="myModalLabel">个人工作日志</h2>
                 </div>
-                <form class="form-horizontal" method="post">
+
                     <div class="modal-body">
+                        <form id="addfrom" name="addfrom" class="form-horizontal" role="from" method="get" action="/addlog" >
                         <fieldset>
                             <div class="control-group" style="display: none">
                                 <!-- Text input-->
                                 <label class="control-label" ></label>
                                 <div class="controls">
-                                    <input id="uid" name="uid" >
+                                    <input id="uid" name="uid" value='<%=session.getAttribute("uid")%>' hidden>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
@@ -81,14 +83,14 @@
                                 <!-- Text input-->
                                 <label class="control-label" >姓名</label>
                                 <div class="controls">
-                                    <input name="uid" class="input-mini" value='<%=session.getAttribute("uname")%>' readonly disabled>
+                                    <input class="input-mini" value='<%=session.getAttribute("uname")%>' readonly disabled>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">日期</label>
                                 <div id="datetimepicker" class="input-append date" style="margin-left:20px;">
-                                    <input type="text" name="workdate" id="time"/>
+                                    <input id="workdate" type="text" name="workdate" id="time"/>
                                     <span class="add-on">
                                         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                                     </span>
@@ -97,15 +99,18 @@
                             <div class="control-group">
                                 <label class="control-label">时长</label>
                                 <div class="controls">
-                                    <!-- Inline Radios -->
-                                    <label class="radio inline">
-                                        <input checked="checked" value="one day" name="group1" type="radio">
-                                        一天
-                                    </label>
-                                    <label class="radio inline">
-                                        <input value="just so so" value="half day" name="group1" type="radio">
-                                        半天
-                                    </label>
+                                    <select name="worktime" id="">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8" selected>8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                    <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -113,26 +118,19 @@
                                 <label class="control-label">内容</label>
                                 <div class="controls">
                                     <div class="textarea">
-                                        <textarea type="" class="" name="describe"> </textarea>
+                                        <textarea type="" class="form-control" name="describe" rows="5" cols="10" > </textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">难度</label>
                                 <div class="controls">
-                                    <!-- Inline Radios -->
-                                    <label class="radio inline">
-                                        <input checked="checked" value="易" name="difficulty" type="radio">
-                                        易
-                                    </label>
-                                    <label class="radio inline">
-                                        <input checked="checked" value="中" name="difficulty" type="radio">
-                                        中
-                                    </label>
-                                    <label class="radio inline">
-                                        <input checked="checked" value="难" name="difficulty" type="radio">
-                                        难
-                                    </label>
+                                    <select name="difficulty" >
+                                        <option value="易" selected>易</option>
+                                        <option value="中">中</option>
+                                        <option value="难">难</option>
+                                    </select>
+                                    <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -140,32 +138,21 @@
                                 <label class="control-label">备注</label>
                                 <div class="controls">
                                     <div class="textarea">
-                                        <textarea type="" class="" name="remark"> </textarea>
+                                        <textarea type="" class="form-control" name="remark" rows="4" cols="10" > </textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label"></label>
-
-                                <!-- Button -->
-                                <div class="controls">
-                                    <button class="btn btn-success">提交</button>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label"></label>
-                            </div>
                         </fieldset>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">提交</button>
+                        <button id="closeAddFrom" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submint" class="btn btn-primary" onclick="addLog()">提交</button>
                     </div>
-                </form>
+
             </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
+        <%--</div><!-- /.modal -->--%>
     </div>
-    <
 
 </div>
 </body>
