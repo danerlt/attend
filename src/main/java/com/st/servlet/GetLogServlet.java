@@ -28,7 +28,6 @@ public class GetLogServlet extends HttpServlet {
             JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd";
             //SerializerFeature.WriteDateUseDateFormat用来将日期格式化成yyyy-MM-dd的形式
             String json= JSON.toJSONString(list, SerializerFeature.WriteDateUseDateFormat);
-            System.out.println(json);
             out.println(json);
             out.close();
         }catch (Exception e){
