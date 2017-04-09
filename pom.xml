@@ -11,22 +11,32 @@
   <!--引入Servlet开始-->
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
     <!--引入Servlet结束-->
     <!--引入jsp相关开始-->
     <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.2</version>
+      <scope>provided</scope>
+    </dependency>
+    <!--引入jsp相关结束-->
+    <!--引入Javaee7开始-->
+    <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <version>7.0</version>
     </dependency>
+    <!--引入Javaee7结束-->
     <!--引入JSTL开始-->
     <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
+      <scope>runtime</scope>
     </dependency>
     <!--引入JSTL结束-->
     <!--引入jsp相关结束-->
