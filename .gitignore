@@ -1,5 +1,10 @@
+# idea
 \.idea/
+*.iml
+# eclipse
 
 \.settings/
 
+# maven
+target/
 *.class
