@@ -14,6 +14,7 @@ import java.sql.Date;
 /**
  * Created by tao on 2017/4/5 0005.
  */
+@WebServlet("/addlog")
 public class AddLogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{

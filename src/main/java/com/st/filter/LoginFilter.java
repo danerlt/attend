@@ -10,6 +10,7 @@ import java.io.IOException;
 /**
  * Created by tao on 2017/4/6 0006.
  */
+@WebFilter("/*")
 public class LoginFilter implements Filter {
     public void destroy() {
     }
@@ -18,9 +19,12 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)req;
         HttpServletResponse response = (HttpServletResponse)resp;
         String currentURL = request.getRequestURI();
+        System.out.println("currentURL:"+currentURL);
         String ctxPath = request.getContextPath();
+        System.out.println("ctxPath:"+ctxPath);
         //除掉项目名称时访问页面当前路径
         String targetURL = currentURL.substring(ctxPath.length());
+        System.out.println("targetURL:"+targetURL);
         //登录页面
         String loginPage = "/login.jsp";
         //登录的Servlet对应的url
@@ -38,8 +42,9 @@ public class LoginFilter implements Filter {
                 return;
             }else{
                 //在不为登陆页面时，再进行判断，如果不是登陆页面也没有session则跳转到登录页面，
-                if(session == null || session.getAttribute("uid") == null || session.getAttribute("uname") == null){
+                if(session == null || session.getAttribute("uid") == null ){
                     response.sendRedirect(ctxPath+loginPage);
+                    System.out.println("redirect:"+ctxPath+loginPage);
                     return;
                 }else{
                     //这里表示正确，会去寻找下一个链，如果不存在，则进行正常的页面跳转

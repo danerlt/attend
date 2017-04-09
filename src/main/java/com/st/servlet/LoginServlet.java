@@ -23,10 +23,11 @@ public class LoginServlet extends HttpServlet {
         try{
             int id = Integer.parseInt(request.getParameter("id"));
             String password = request.getParameter("password");
+            String ctxPath = request.getContextPath();//应用路径
             UserDao ud = new UserDao();
             User u = ud.get(id,password);
             if(u == null){
-                response.sendRedirect("login.jsp");
+                response.sendRedirect(ctxPath+"login.jsp");
             }else{
                 request.getSession().setAttribute("uid",u.getId());
                 request.getSession().setAttribute("uname",u.getUsername());
@@ -37,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(Id);
                 response.addCookie(Pass);
                 response.addCookie(Name);
-                response.sendRedirect("index.jsp");
+                response.sendRedirect(ctxPath+"/index.jsp");
             }
         } catch (Exception e){
             e.printStackTrace();

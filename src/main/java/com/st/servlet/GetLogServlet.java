@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by tao on 2017/4/4 0004.
  */
+@WebServlet("/findlog")
 public class GetLogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
