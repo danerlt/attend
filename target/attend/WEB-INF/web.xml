@@ -16,14 +16,14 @@
     <filter-name>CharSetFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <filter>
-    <filter-name>LoginFilter</filter-name>
-    <filter-class>com.st.filter.LoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  <!--<filter>-->
+    <!--<filter-name>LoginFilter</filter-name>-->
+    <!--<filter-class>com.st.filter.LoginFilter</filter-class>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>LoginFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
   <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>com.st.servlet.LoginServlet</servlet-class>
@@ -32,20 +32,20 @@
     <servlet-name>login</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>findlog</servlet-name>
-    <servlet-class>com.st.servlet.GetLogServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>findlog</servlet-name>
-    <url-pattern>/findlog</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>addlog</servlet-name>
-    <servlet-class>com.st.servlet.AddLogServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>addlog</servlet-name>
-    <url-pattern>/addlog</url-pattern>
-  </servlet-mapping>
+  <!--<servlet>-->
+    <!--<servlet-name>findlog</servlet-name>-->
+    <!--<servlet-class>com.st.servlet.GetLogServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>findlog</servlet-name>-->
+    <!--<url-pattern>/findlog</url-pattern>-->
+  <!--</servlet-mapping>-->
+  <!--<servlet>-->
+    <!--<servlet-name>addlog</servlet-name>-->
+    <!--<servlet-class>com.st.servlet.AddLogServlet</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>addlog</servlet-name>-->
+    <!--<url-pattern>/addlog</url-pattern>-->
+  <!--</servlet-mapping>-->
 </web-app>
