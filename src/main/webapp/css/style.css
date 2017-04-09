@@ -38,7 +38,7 @@ a{
 .item{
     margin-bottom: 22px;
 }
-input{
+.input{
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: #fff;
@@ -55,24 +55,13 @@ input{
     outline: 0;
     padding: 3px 10px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}
+.submit{
+    background-color: #20A0FF;
     width: 100%;
 }
 input:hover{
     border-color: #8391a5;
-}
-input[type=checkbox]{
-    display: inline-block;
-    position: relative;
-    border: 1px solid #bfcbd9;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 18px;
-    height: 18px;
-    background-color: #fff;
-    z-index: 1;
-}
-input[type=checkbox]:hover{
-    border-color: #0190fe;
 }
 .item > label{
     display: block;
