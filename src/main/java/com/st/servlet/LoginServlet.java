@@ -18,19 +18,28 @@ import com.st.dao.UserDao;
 /**
  * Created by tao on 2017/4/2 0002.
  */
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
+            //获取参数
             int id = Integer.parseInt(request.getParameter("id"));
             String password = request.getParameter("password");
-            String ctxPath = request.getContextPath();//应用路径
+            //获取项目路径
+            String ctxPath = request.getContextPath();
             UserDao ud = new UserDao();
+            //通过用户id和password获取用户
             User u = ud.get(id,password);
-            if(u == null){
-                response.sendRedirect(ctxPath+"login.jsp");
-            }else{
-                request.getSession().setAttribute("uid",u.getId());
-                request.getSession().setAttribute("uname",u.getUsername());
+            String loginPage = "/login.jsp";
+            String indexPage = "/index.jsp";
+            PrintWriter out  = response.getWriter();
+            if(u == null) {
+                //没有找到
+            } else {
+                //找到用户,设置session
+                request.getSession().setAttribute("uId",u.getId());
+                request.getSession().setAttribute("uName",u.getUsername());
+                //设置cookie
                 URLEncoder.encode("Name","UTF-8");
                 Cookie Id =new Cookie("userId",String.valueOf(u.getId()));
                 Cookie Pass = new Cookie("userPwd",u.getPassword());
@@ -38,7 +47,8 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(Id);
                 response.addCookie(Pass);
                 response.addCookie(Name);
-                response.sendRedirect(ctxPath+"/index.jsp");
+                //设置成功跳转到主页
+                response.sendRedirect(ctxPath+indexPage);
             }
         } catch (Exception e){
             e.printStackTrace();

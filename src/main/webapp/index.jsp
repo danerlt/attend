@@ -10,16 +10,10 @@
 <head>
     <title>登录</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-table.css">
-    <link rel="stylesheet" href="css/bootstrap-combined.min.css">
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 <div id="nav">
@@ -34,7 +28,7 @@
 
     </div>
     <div class="display">
-        <p><b><%=session.getAttribute("uname")%>的个人工作日志</b></p>
+        <p><b><%=session.getAttribute("uName")%>的个人工作日志</b></p>
     </div>
     <div class="serch">
         <input type="text" name="" class="text" placeholder="按时间查找"/>
@@ -64,7 +58,7 @@
         <%--<div class="modal-dialog">--%>
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button id="closeModel" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h2 class="modal-title" id="myModalLabel">个人工作日志</h2>
                 </div>
 
@@ -75,7 +69,7 @@
                                 <!-- Text input-->
                                 <label class="control-label" ></label>
                                 <div class="controls">
-                                    <input id="uid" name="uid" value='<%=session.getAttribute("uid")%>' hidden>
+                                    <input id="uid" name="uid" value='<%=session.getAttribute("uId")%>' hidden>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
@@ -83,7 +77,7 @@
                                 <!-- Text input-->
                                 <label class="control-label" >姓名</label>
                                 <div class="controls">
-                                    <input class="input-mini" value='<%=session.getAttribute("uname")%>' readonly disabled>
+                                    <input class="input-mini" value='<%=session.getAttribute("uName")%>' readonly disabled>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
@@ -153,7 +147,14 @@
             </div><!-- /.modal-content -->
         <%--</div><!-- /.modal -->--%>
     </div>
-
 </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/tableExport.js"></script>
+<script src="js/jquery.base64.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

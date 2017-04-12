@@ -32,7 +32,7 @@ CREATE TABLE `log` (
   `worktime` tinyint(4) DEFAULT NULL COMMENT '工作时长,单位小时',
   `difficulty` varchar(10) DEFAULT NULL COMMENT '工作难度,有初,中,高',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `status` varchar(10) DEFAULT NULL COMMENT '日志状态,通过或者驳回',
+  `status` varchar(10) DEFAULT NULL COMMENT '日志状态,未审核,通过或者驳回,',
   PRIMARY KEY (`id`),
   KEY `fk_user` (`uid`),
   CONSTRAINT `fk_user` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
@@ -53,7 +53,7 @@ CREATE TABLE `user` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL COMMENT '用户名,不能为空',
   `password` varchar(32) NOT NULL COMMENT '密码,加密存储',
-  `level` int(11) DEFAULT '0' COMMENT '用户权限等级,一共分为5级,最高5级,最低0级',
+  `level` int(11) DEFAULT '0' COMMENT '用户权限等级,一共分为3级,用户等级为1,管理员等级大于1,等级为2时可以审核日志,删除日志,导出日志,等级为3时可以管理日志(增删改查),管理用户(增删改查)',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1005 DEFAULT CHARSET=utf8;
 

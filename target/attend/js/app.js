@@ -1,6 +1,7 @@
 /**
  * Created by tao on 2017/4/5 0005.
- */
+*/
+
 function getCookie(Name) {
     var search = Name + "="//查询检索的值
     var returnvalue = "";//返回值
@@ -24,7 +25,7 @@ function findLog() {
                 url:"/attend/findlog",
                 dataType:"json",
                 data:{
-                    uid:getCookie("Id")
+                    uid:getCookie("userId")
                 },
                 success:function (data) {
                     //清楚之前的数据
@@ -37,8 +38,8 @@ function findLog() {
         );
     }
 
-    /**提交日志**/
-    function addLog(){
+/**提交日志**/
+function addLog(){
         var addFrom = document.addfrom;
         var uid = addFrom.uid.value;
         var workdate = addFrom.workdate.value;
@@ -73,15 +74,50 @@ function findLog() {
                    }else{
                        alert("提交失败");
                    }
+                   $("#closeModel").click();
                    findLog();
                 }
 
             }
         )
     }
-    function exportXls() {
-        
+
+
+function exportXls() {
+    $.ajax({
+            type:"POST",
+            url:"/attend/findlog",
+            dataType:"json",
+            data:{
+                uid:getCookie("userId")
+            },
+            success:function (data) {
+                //$("#table").tableExport({type:'json',escape:'false'});
+               // JSONToCSVConvertor(data, "Vehicle Report", true);
+                location.href="exportExcel";
+            }
+        }
+    );
     }
+
+function findAllLog() {
+        var data = {
+            rows:[]
+        }
+        $.ajax({
+                type:"POST",
+                url:"/attend/admin/allLog",
+                dataType:"json",
+                data:{
+                },
+                success:function (result) {
+                   console.log(result);
+                }
+            }
+        );
+
+    }
+
 $(document).ready(function(){
     $('#datetimepicker').datetimepicker({
         format: 'yyyy-MM-dd',

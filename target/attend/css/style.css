@@ -77,6 +77,9 @@ input[type=checkbox]:hover{
 .item > label{
     display: block;
 }
+.submit{
+    background-color:#20A0FF;
+}
 /************************login.jsp样式结束*********************/
 /***********index.jsp样式开始************************/
 
@@ -86,7 +89,7 @@ input[type=checkbox]:hover{
     height:100%;
     float:left;
 }
-#nav .menu2{
+#nav .menu{
     height:50px;
     line-height: 50px;
     text-indent: 18px;
@@ -97,17 +100,6 @@ input[type=checkbox]:hover{
     overflow-y:hidden;
 }
 
-#nav .menu1{
-    line-height:50px;
-    font-size:18px;
-    text-indent:18px;
-    height:auto;
-    border:1px solid #EEE8DD;
-    background-color: #d0d0d0;
-    cursor:hand;
-    overflow-y:hidden;
-    filter:Alpha(opacity=70);
-}
 .select{
     height:100px;
     text-align:left;
@@ -161,4 +153,8 @@ a:hover{
     background-color: #0080ff;
     font-size:16px;
     border-radius: 4px;
+}
+/********************表单样式开始************************/
+.display_none{
+    display: none;
 }

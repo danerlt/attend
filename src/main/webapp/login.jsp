@@ -5,15 +5,11 @@
   Time: 0:12
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>登录</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 <div id="app" >
@@ -21,22 +17,21 @@
         <h3 class="title">系统登录</h3>
         <div class="item">
             <label >
-                <input name="id" type="text" placeholder="用户工号">
+                <input id="id" name="id" class="input" type="text"  placeholder="用户工号">
             </label>
         </div>
         <div class="item">
             <label >
-                <input name="password" type="password" placeholder="密码">
+                <input id="password" name="password" class="input" type="password"  placeholder="密码">
             </label>
         </div>
         <div class="item">
             <label >
-                <input class="bg-primary" type="submit" value="登录">
+                <input class="input submit"  type="submit" value="登录" >
             </label>
         </div>
 
     </form>
 </div>
-
 </body>
 </html>

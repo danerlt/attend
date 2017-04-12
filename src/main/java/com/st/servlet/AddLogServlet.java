@@ -25,7 +25,7 @@ public class AddLogServlet extends HttpServlet {
            int worktime = Integer.parseInt(request.getParameter("worktime"));
            String difficulty = request.getParameter("difficulty");
            String remark =  request.getParameter("remark");
-           String status = request.getParameter("未审核");
+           String status = "未审核";
           //生成日志对象
            Log log = new Log(0,uid,workdate,describe,worktime,difficulty,remark,status);
            LogDao ld = new LogDao();

@@ -18,7 +18,7 @@ public class Log {
     private String difficulty;
     private String remark;
     private String status;
-
+    public Log(){}
     public Log(int id,int uid,Date workdate,String desribe,int worktime,String difficulty,String remark,String status){
         this.id = id;
         this.uid = uid;

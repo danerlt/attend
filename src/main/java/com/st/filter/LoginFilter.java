@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by tao on 2017/4/6 0006.
  */
-@WebFilter("/*")
+@WebFilter("*.jsp")
 public class LoginFilter implements Filter {
     public void destroy() {
     }
@@ -42,7 +42,7 @@ public class LoginFilter implements Filter {
                 return;
             }else{
                 //在不为登陆页面时，再进行判断，如果不是登陆页面也没有session则跳转到登录页面，
-                if(session == null || session.getAttribute("uid") == null ){
+                if(session == null || session.getAttribute("uId") == null ){
                     response.sendRedirect(ctxPath+loginPage);
                     System.out.println("redirect:"+ctxPath+loginPage);
                     return;
