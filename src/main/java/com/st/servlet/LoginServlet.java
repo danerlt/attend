@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
             PrintWriter out  = response.getWriter();
             if(u == null) {
                 //没有找到
+                out.println("用户不存在或者密码错误!");
+                out.close();
             } else {
                 //找到用户,设置session
                 request.getSession().setAttribute("uId",u.getId());
