@@ -1,10 +1,13 @@
 package com.st.util;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class DBUtil {
 
@@ -18,23 +21,22 @@ public class DBUtil {
     public Statement stmt = null;
     // 通过配置文件设置driver,username,username,password
     static {
-//		Properties prop = new Properties();
-//		Reader in;
-//		try {
-//			in = new FileReader("./src/config.properties");
-//			prop.load(in);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		driver = prop.getProperty("driver");
-//		url = prop.getProperty("url");
-//		username = prop.getProperty("username");
-//		password = prop.getProperty("password");
-        driver = "com.mysql.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/attend?useUnicode=true&characterEncoding=utf-8&useSSL=true";
-        username = "root";
-        password = "myroot!!!";
+		Properties prop = new Properties();
+		InputStream in;
+		try {
+		    //获取classPath
 
+		    String classPath = DBUtil.class.getResource("/").getPath();
+            String name = classPath+ "dbconfig.properties";
+			in = new FileInputStream(name);
+			prop.load(in);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		driver = prop.getProperty("driver");
+		url = prop.getProperty("url");
+		username = prop.getProperty("username");
+		password = prop.getProperty("password");
     }
 
     public DBUtil() {
