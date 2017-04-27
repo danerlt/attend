@@ -19,11 +19,10 @@ import java.util.List;
 /**
  * Created by tao on 2017/4/9 0009.
  */
-@WebServlet("/admin/allLog")
+@WebServlet(name = "GetAllLogServlet",urlPatterns = "/admin/allLog")
 public class GetAllLogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            int uid = Integer.parseInt(request.getParameter("uid"));
             LogDao ld = new LogDao();
             List<Log> list = ld.findAll();
             UserDao ud = new UserDao();

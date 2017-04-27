@@ -154,7 +154,7 @@ public class LogDao {
      */
     public List<Log> findAll(){
         DBUtil db = new DBUtil();
-        String sql = "select * where Logname";
+        String sql = "select * from log order by uid";
         List<Log> list = new ArrayList<Log>();
         try {
             ResultSet rs = db.doQuery(sql);

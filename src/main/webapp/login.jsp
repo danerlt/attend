@@ -9,7 +9,9 @@
 <html>
 <head>
     <title>登录</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
 </head>
 <body>
 <div id="app" >
@@ -17,21 +19,27 @@
         <h3 class="title">系统登录</h3>
         <div class="item">
             <label >
-                <input id="id" name="id" class="input" type="text"  placeholder="用户工号">
+                <input name="id" class="input" type="text"  placeholder="用户工号">
             </label>
         </div>
         <div class="item">
             <label >
-                <input id="password" name="password" class="input" type="password"  placeholder="密码">
+                <input name="password" class="input" type="password"  placeholder="密码">
             </label>
         </div>
         <div class="item">
             <label >
-                <input class="input submit"  type="submit" value="登录" >
+                <input class="submit"  type="submit" value="登录">
             </label>
         </div>
 
     </form>
 </div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

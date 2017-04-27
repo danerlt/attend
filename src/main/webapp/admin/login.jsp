@@ -9,11 +9,11 @@
 <html>
 <head>
     <title>登录</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-table.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-combined.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 
 </head>
 <body>
@@ -38,12 +38,12 @@
 
     </form>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <script src="js/jquery.dataTable.min.js"></script>
-<script src="js/bootstrap-table.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
-<script src="js/vue.js"></script>
-<script src="js/app.js"></script>
+<script src="../js/bootstrap-table.js"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+<script src="../js/vue.js"></script>
+<script src="../js/app.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tao
@@ -32,21 +33,43 @@
     </div>
     <div class="serch">
         <input type="text" name="" class="text" placeholder="按时间查找"/>
-        <button class="submit" onclick="findLog()">查看</button>
+        <button id="findlog" class="submit" onclick="findLog()">查看</button>
         <!-- 按钮触发模态框 -->
         <button class="submit" data-toggle="modal" data-target="#myModal" onclick="">新增</button>
         <button class="submit" onclick="exportXls()">导出</button>
     </div>
     <div class="table-responsive">
-        <table id="table" class="table table-striped table-hover">
+        <table id="table" class="table table-striped table-hover" style="display: none">
             <thead>
             <tr>
-                <th data-field="workdate">日期</th>
-                <th data-field="desribe">内容</th>
-                <th data-field="worktime">时长</th>
-                <th data-field="difficulty">难度</th>
-                <th data-field="remark">备注</th>
-                <th data-field="status">状态</th>
+                <%--<th data-field="workdate">日期</th>--%>
+                <%--<th data-field="desribe">内容</th>--%>
+                <%--<th data-field="worktime">时长</th>--%>
+                <%--<th data-field="difficulty">难度</th>--%>
+                <%--<th data-field="remark">备注</th>--%>
+                <%--<th data-field="status">状态</th>--%>
+                <th >序号</th>
+                <th >日期</th>
+                <th >内容</th>
+                <th >时长</th>
+                <th >难度</th>
+                <th >备注</th>
+                <th >状态</th>
+                <th >操作</th>
+            </tr>
+            <tr v-for="log in logs" >
+                <td>{{logs.indexOf(log)+1}} <span style="display: none">{{log.id}}</span></td>
+                <td>{{log.workdate}}</td>
+                <td>{{log.desribe}}</td>
+                <td>{{log.worktime}}</td>
+                <td>{{log.difficulty}}</td>
+                <td>{{log.remark}}</td>
+                <td>{{log.status}}</td>
+                <td>
+                    <span style="display: none">{{log.id}}</span>
+                    <a class="btn btn-danger" onclick="acceptLog(this)">审核</a>
+                    <a class="btn btn-danger" onclick="delLog(this)">删除</a>
+                </td>
             </tr>
             </thead>
         </table>
@@ -83,11 +106,9 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label">日期</label>
-                                <div id="datetimepicker" class="input-append date" style="margin-left:20px;">
-                                    <input id="workdate" type="text" name="workdate" id="time"/>
-                                    <span class="add-on">
-                                        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                                    </span>
+                                <div class="controls">
+                                    <input id="workdate" type="date" name="workdate" id="time"/>
+                                    <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -142,6 +163,7 @@
                     <div class="modal-footer">
                         <button id="closeAddFrom" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         <button type="submint" class="btn btn-primary" onclick="addLog()">提交</button>
+                        <input type="reset" name="reset" style="display: none;" />
                     </div>
 
             </div><!-- /.modal-content -->
@@ -150,10 +172,7 @@
 </div>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-table.js"></script>
 <script src="js/bootstrap-datetimepicker.min.js"></script>
-<script src="js/tableExport.js"></script>
-<script src="js/jquery.base64.js"></script>
 <script src="js/vue.js"></script>
 <script src="js/app.js"></script>
 </body>

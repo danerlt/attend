@@ -15,28 +15,15 @@ public class DBUtil {
     private static String url;
     private static String username;
     private static String password;
-    public Connection conn = null;
-    public PreparedStatement pstmt = null;
-    public ResultSet rs = null;
-    public Statement stmt = null;
-    // 通过配置文件设置driver,username,username,password
+    private Connection conn = null;
+    private PreparedStatement pstmt = null;
+    private ResultSet rs = null;
+    private Statement stmt = null;
     static {
-		Properties prop = new Properties();
-		InputStream in;
-		try {
-		    //获取classPath
-
-		    String classPath = DBUtil.class.getResource("/").getPath();
-            String name = classPath+ "dbconfig.properties";
-			in = new FileInputStream(name);
-			prop.load(in);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		driver = prop.getProperty("driver");
-		url = prop.getProperty("url");
-		username = prop.getProperty("username");
-		password = prop.getProperty("password");
+        driver = "com.mysql.jdbc.Driver";
+        url = "jdbc:mysql://localhost:3306/attend?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+        username = "root";
+        password = "123456";
     }
 
     public DBUtil() {
@@ -180,7 +167,7 @@ public class DBUtil {
      * @param conn 数据库连接对象
      * @throws Exception
      */
-    public void close() {
+    public  void close() {
         if(rs != null){
             try {
                 rs.close();

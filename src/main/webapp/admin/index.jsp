@@ -40,7 +40,7 @@
 
     </div>
     <div class="table-responsive">
-        <table id="admintable" class="table table-striped table-hover">
+        <table id="admintable" class="table table-striped table-hover" style="display: none">
             <thead>
             <tr>
                 <th data-field="workdate">日期</th>
